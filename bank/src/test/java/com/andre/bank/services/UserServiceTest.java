@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Random;
-
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class UserServiceTest {
+
+    private static Integer count = 1;
 
     @Autowired
     private UserService userService;
@@ -49,13 +49,10 @@ public class UserServiceTest {
 
     private User getRandomUser() {
         final var user = new User();
-        user.setUsername(getRandomString());
-        user.setPassword(getRandomString());
+        user.setUsername("user" + count);
+        user.setPassword("password" + count);
+        count++;
         return user;
-    }
-
-    private String getRandomString() {
-        return String.valueOf(new Random().nextInt(10));
     }
 
 }
